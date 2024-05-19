@@ -1,8 +1,8 @@
-using BulkyWebTest.Models;
+using EcomWebLocal.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace BulkyWebTest.Controllers
+namespace EcomWebLocal.Controllers
 {
     public class HomeController : Controller
     {

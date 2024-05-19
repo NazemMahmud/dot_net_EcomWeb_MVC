@@ -1,4 +1,4 @@
-namespace BulkyWebTest.Models
+namespace EcomWebLocal.Models
 {
     public class ErrorViewModel
     {
