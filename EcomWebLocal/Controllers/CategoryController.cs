@@ -25,9 +25,19 @@ namespace EcomWebLocal.Controllers
         [HttpPost]
         public IActionResult Create(Category category)
         {
-            _db.Categories.Add(category);
-            _db.SaveChanges();
-            return RedirectToAction("Index", "Category");
+            if (category.Name == category.DisplayOrder.ToString()) 
+            {
+                ModelState.AddModelError("name", "DisplayOrder can't exactly match with name");    
+            }
+
+            if (ModelState.IsValid)
+            {
+                _db.Categories.Add(category);
+                _db.SaveChanges();
+                return RedirectToAction("Index", "Category");
+            }
+
+            return View();
         }
     }
 }
