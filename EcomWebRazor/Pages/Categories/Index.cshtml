@@ -1,0 +1,50 @@
+﻿@page
+@model EcomWebRazor.Pages.Categories.IndexModel
+
+
+@* <partial name="_NotificationMessage" /> *@
+
+<div class="container"> 
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">
+                Category List
+            </h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-page="/categories/create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Create New Category
+            </a>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th> Category Name </th>
+            <th> Display Order </th>
+            <th> Action </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var cat in Model.CategoryList.OrderBy(d => d.DisplayOrder))
+        {
+            <tr>
+                <td> @cat.Name  </td>
+                <td> @cat.DisplayOrder </td>
+                <td>
+                    <div class="w-75 btn-group">
+                        <a asp-page="/categories/edit" asp-route-id="@cat.Id" class="btn btn-primary mx-2">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a asp-page="/categories/delete" asp-route-id="@cat.Id" class="btn btn-danger mx-2">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
