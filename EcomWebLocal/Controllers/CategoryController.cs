@@ -35,7 +35,7 @@ namespace EcomWebLocal.Controllers
             {
                 _db.Categories.Add(category);
                 _db.SaveChanges();
-                TempData["success"] = "A Category Is Created Successfully.";
+                TempData["success"] = "Category Is Created Successfully.";
                 return RedirectToAction("Index", "Category");
             }
 
@@ -68,7 +68,7 @@ namespace EcomWebLocal.Controllers
             {
                 _db.Categories.Update(category);
                 _db.SaveChanges();
-                TempData["success"] = "A Category Is Updated Successfully.";
+                TempData["success"] = "Category Is Updated Successfully.";
                 return RedirectToAction("Index", "Category");
             }
 
