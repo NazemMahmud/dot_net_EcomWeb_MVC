@@ -102,7 +102,7 @@ namespace EcomWebLocal.Controllers
 
             _db.Categories.Remove(category);
             _db.SaveChanges();
-            TempData["success"] = "A Category Is Deleted Successfully.";
+            TempData["success"] = "Category Is Deleted Successfully.";
             return RedirectToAction("Index", "Category");
         }
     }
