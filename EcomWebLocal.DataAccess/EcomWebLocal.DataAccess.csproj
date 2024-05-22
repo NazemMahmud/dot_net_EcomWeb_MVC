@@ -1,14 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Content Remove="Views\Category\Index1.cshtml" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.5" />
@@ -20,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EcomWebLocal.DataAccess\EcomWebLocal.DataAccess.csproj" />
     <ProjectReference Include="..\EcomWebLocal.Models\EcomWebLocal.Models.csproj" />
     <ProjectReference Include="..\EcomWebLocal.Utility\EcomWebLocal.Utility.csproj" />
   </ItemGroup>

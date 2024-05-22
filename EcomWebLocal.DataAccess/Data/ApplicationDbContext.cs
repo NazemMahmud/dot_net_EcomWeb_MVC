@@ -1,7 +1,7 @@
 ﻿using EcomWebLocal.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace EcomWebLocal.Data
+namespace EcomWebLocal.DataAccess.Data
 {
     public class ApplicationDbContext : DbContext
     {

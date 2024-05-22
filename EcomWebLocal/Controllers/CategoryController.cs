@@ -1,4 +1,4 @@
-﻿using EcomWebLocal.Data;
+﻿using EcomWebLocal.DataAccess.Data;
 using EcomWebLocal.Models;
 using Microsoft.AspNetCore.Mvc;
 
