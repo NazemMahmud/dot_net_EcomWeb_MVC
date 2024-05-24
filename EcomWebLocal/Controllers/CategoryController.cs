@@ -1,4 +1,5 @@
 ﻿using EcomWebLocal.DataAccess.Data;
+using EcomWebLocal.DataAccess.Repositories;
 using EcomWebLocal.DataAccess.Repositories.IRepository;
 using EcomWebLocal.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -7,15 +8,15 @@ namespace EcomWebLocal.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ICategoryRepository _categoryRepository;
-        public CategoryController(ICategoryRepository categoryRepository)
+        private readonly IUnitOfWork _unitOfWork;
+        public CategoryController(IUnitOfWork unitOfWork)
         {
-            _categoryRepository = categoryRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
         {
-            List<Category> categoryList = _categoryRepository.GetAll().ToList(); // .Categories.ToList();
+            List<Category> categoryList = _unitOfWork.Category.GetAll().ToList();
             return View(categoryList);
         }
 
@@ -34,8 +35,8 @@ namespace EcomWebLocal.Controllers
 
             if (ModelState.IsValid)
             {
-                _categoryRepository.Add(category);
-                _categoryRepository.Save();
+                _unitOfWork.Category.Add(category);
+                _unitOfWork.Save();
                 TempData["success"] = "Category Is Created Successfully.";
                 return RedirectToAction("Index", "Category");
             }
@@ -50,7 +51,7 @@ namespace EcomWebLocal.Controllers
                 return NotFound();
             }
 
-            Category? category = _categoryRepository.Get(c => c.Id == id);
+            Category? category = _unitOfWork.Category.Get(c => c.Id == id);
 
             if (category == null)
             {
@@ -65,8 +66,8 @@ namespace EcomWebLocal.Controllers
         {
             if (ModelState.IsValid)
             {
-                _categoryRepository.Update(category);
-                _categoryRepository.Save();
+                _unitOfWork.Category.Update(category);
+                _unitOfWork.Save();
 
                 TempData["success"] = "Category Is Updated Successfully.";
                 return RedirectToAction("Index", "Category");
@@ -82,7 +83,7 @@ namespace EcomWebLocal.Controllers
                 return NotFound();
             }
 
-            Category? category = _categoryRepository.Get(c => c.Id == id);
+            Category? category = _unitOfWork.Category.Get(c => c.Id == id);
             if (category == null)
             {
                 return NotFound();
@@ -94,14 +95,14 @@ namespace EcomWebLocal.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteCategory(int? id)
         {
-            Category? category = _categoryRepository.Get(c => c.Id == id);
+            Category? category = _unitOfWork.Category.Get(c => c.Id == id);
             if (category == null)
             {
                 return NotFound();
             }
 
-            _categoryRepository.Remove(category);
-            _categoryRepository.Save();
+            _unitOfWork.Category.Remove(category);
+            _unitOfWork.Save();
             TempData["success"] = "Category Is Deleted Successfully.";
             return RedirectToAction("Index", "Category");
         }
