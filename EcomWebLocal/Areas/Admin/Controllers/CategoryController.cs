@@ -4,8 +4,9 @@ using EcomWebLocal.DataAccess.Repositories.IRepository;
 using EcomWebLocal.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EcomWebLocal.Controllers
+namespace EcomWebLocal.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
