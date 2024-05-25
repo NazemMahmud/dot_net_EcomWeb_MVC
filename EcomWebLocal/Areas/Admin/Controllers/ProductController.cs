@@ -3,6 +3,7 @@ using EcomWebLocal.DataAccess.Repositories;
 using EcomWebLocal.DataAccess.Repositories.IRepository;
 using EcomWebLocal.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EcomWebLocal.Areas.Admin.Controllers
 {
@@ -23,6 +24,14 @@ namespace EcomWebLocal.Areas.Admin.Controllers
 
         public IActionResult Create()
         {
+            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(obj => new SelectListItem
+            {
+                Text = obj.Name,
+                Value = obj.Id.ToString()
+            });
+
+            // ViewBag.CategoriesList = CategoryList;
+            ViewData["CategoriesList"] = CategoryList;
             return View();
         }
 
