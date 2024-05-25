@@ -2,8 +2,12 @@
 using EcomWebLocal.DataAccess.Repositories;
 using EcomWebLocal.DataAccess.Repositories.IRepository;
 using EcomWebLocal.Models;
+using EcomWebLocal.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using System.Data;
+
 
 namespace EcomWebLocal.Areas.Admin.Controllers
 {
@@ -18,7 +22,7 @@ namespace EcomWebLocal.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            List<Product> productList = _unitOfWork.Product.GetAll().ToList();
+            List<Product> productList = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
             return View(productList);
         }
 
